@@ -610,3 +610,26 @@ img { max-width: 100%; display: block; }
   margin-top: 0.25rem;
   padding: 0.75rem 1rem;
 }
+
+/* ---------- Spinner ---------- */
+.spinner {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Optional: darken the button slightly while loading */
+.auth-submit:disabled {
+  opacity: 1;
+  background: var(--accent-hover);
+  cursor: wait;
+}

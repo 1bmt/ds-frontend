@@ -49,7 +49,7 @@ function Login() {
         <div className="auth-card">
           <div className="auth-head">
             <h1>Sign In</h1>
-            <p>Access your Deep Scientific account</p>
+            <p>Access your account</p>
           </div>
 
           <form className="auth-form" onSubmit={handleSubmit}>
@@ -90,11 +90,12 @@ function Login() {
             </div>
 
             <button
-              type="submit"
-              className="btn btn-primary auth-submit"
-              disabled={loading}
+            type="submit"
+            className="btn btn-primary auth-submit"
+            disabled={loading}
             >
-              {loading ? 'Signing in…' : 'Sign In'}
+            {loading && <span className="spinner" aria-hidden="true" />}
+            {loading ? 'Signing in…' : 'Sign In'}
             </button>
           </form>
         </div>
