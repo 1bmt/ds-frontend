@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { saveToken } from '../lib/auth'
 
 function Login() {
+  const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -24,15 +26,13 @@ function Login() {
       try { data = JSON.parse(text) } catch { data = text }
 
       if (res.ok) {
-        // Adjust the field name to match your backend's response
-        const token = data?.token || data?.access_token || data?.jwt
+        const token = data?.access_token || data?.token || data?.jwt
 
         if (token) {
           saveToken(token)
           setResponse({ ok: true, message: 'Login successful' })
           setPassword('')
-          // Optional: redirect after short delay
-          // setTimeout(() => navigate('/'), 800)
+          window.location.href = '/admin'
         } else {
           setResponse({
             ok: false,
@@ -40,7 +40,6 @@ function Login() {
           })
         }
       } else {
-        // Extract a human-readable error message from the response
         const msg =
           (typeof data === 'object' && (data.message || data.error || data.detail)) ||
           (typeof data === 'string' && data) ||
