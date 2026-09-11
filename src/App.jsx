@@ -6,6 +6,7 @@ import About from './pages/About'
 import Partners from './pages/Partners'
 import Contact from './pages/Contact'
 import Login from './pages/Login'
+import Admin from "./pages/Admin"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/partners" element={<Partners />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />
     </div>

@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+import { isLoggedIn } from '../lib/auth'
 
 function Header() {
+  const loggedIn = isLoggedIn()
+
   return (
     <header className="header">
       <div className="header-inner">
@@ -12,7 +15,11 @@ function Header() {
           <Link to="/about">About</Link>
           <Link to="/partners">Partners</Link>
           <Link to="/contact">Contact</Link>
-          <Link to="/login">Login</Link>
+          {loggedIn ? (
+            <Link to="/admin">Admin</Link>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
         </nav>
       </div>
     </header>
