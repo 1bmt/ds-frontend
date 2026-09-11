@@ -1,40 +1,20 @@
+import { Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
-import Product from './components/Product'
-import { useProducts } from './hooks/useProducts'
+import Footer from './components/Footer'
+import Home from './pages/Home'
+import About from './pages/About'
+import Partners from './pages/Partners'
 
 function App() {
-  const { products, loading, error } = useProducts()
-
   return (
     <div>
       <Header />
-      <div className="container">
-        <h1>Leading Scientific Equipment & Chemical Distributor</h1>
-        <p>
-          Serving the scientific community since January 2014 with premium laboratory
-          equipment, chemicals, and instruments from world-renowned manufacturers and
-          international partners.
-        </p>
-
-        <div className="products">
-          {loading && <p className="status">Loading products…</p>}
-
-          {error && (
-            <p className="status error">
-              Couldn't load products: {error}
-            </p>
-          )}
-
-          {!loading && !error && products.length === 0 && (
-            <p className="status">No products available.</p>
-          )}
-
-          {!loading && !error &&
-            products.map(product => (
-              <Product key={product.id} {...product} />
-            ))}
-        </div>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/partners" element={<Partners />} />
+      </Routes>
+      <Footer />
     </div>
   )
 }
