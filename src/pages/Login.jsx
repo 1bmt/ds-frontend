@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { saveToken } from '../lib/auth'
 
 function Login() {
   const [username, setUsername] = useState('')
@@ -23,10 +24,23 @@ function Login() {
       try { data = JSON.parse(text) } catch { data = text }
 
       if (res.ok) {
-        setResponse({ ok: true, message: 'Login successful' })
-        setPassword('')
+        // Adjust the field name to match your backend's response
+        const token = data?.token || data?.access_token || data?.jwt
+
+        if (token) {
+          saveToken(token)
+          setResponse({ ok: true, message: 'Login successful' })
+          setPassword('')
+          // Optional: redirect after short delay
+          // setTimeout(() => navigate('/'), 800)
+        } else {
+          setResponse({
+            ok: false,
+            message: 'Login succeeded but no token was returned',
+          })
+        }
       } else {
-        // Pull just a readable message — never render the whole object
+        // Extract a human-readable error message from the response
         const msg =
           (typeof data === 'object' && (data.message || data.error || data.detail)) ||
           (typeof data === 'string' && data) ||
@@ -90,12 +104,12 @@ function Login() {
             </div>
 
             <button
-            type="submit"
-            className="btn btn-primary auth-submit"
-            disabled={loading}
+              type="submit"
+              className="btn btn-primary auth-submit"
+              disabled={loading}
             >
-            {loading && <span className="spinner" aria-hidden="true" />}
-            {loading ? 'Signing in…' : 'Sign In'}
+              {loading && <span className="spinner" aria-hidden="true" />}
+              {loading ? 'Signing in…' : 'Sign In'}
             </button>
           </form>
         </div>
