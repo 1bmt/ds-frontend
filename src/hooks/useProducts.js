@@ -13,7 +13,7 @@ export function useProducts() {
         setLoading(true)
         setError(null)
 
-        const res = await fetch('/api/products', { signal: controller.signal })
+        const res = await fetch('http://localhost:8000/api/products', { signal: controller.signal })
         if (!res.ok) throw new Error(`Request failed: ${res.status}`)
 
         const data = await res.json()

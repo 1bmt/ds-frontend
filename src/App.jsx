@@ -6,7 +6,7 @@ import About from './pages/About'
 import Partners from './pages/Partners'
 import Contact from './pages/Contact'
 import Login from './pages/Login'
-import Admin from "./pages/Admin"
+import AddProduct from './pages/AddProduct'
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route path="/partners" element={<Partners />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/add_product" element={<AddProduct />} />
       </Routes>
       <Footer />
     </div>

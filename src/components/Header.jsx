@@ -16,7 +16,7 @@ function Header() {
           <Link to="/partners">Partners</Link>
           <Link to="/contact">Contact</Link>
           {loggedIn ? (
-            <Link to="/admin">Admin</Link>
+            <Link to="/add_product">Add Product</Link>
           ) : (
             <Link to="/login">Login</Link>
           )}

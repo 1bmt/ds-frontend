@@ -1,27 +1,36 @@
-function Product({ name, price, in_stock, picture, description }) {
-  const badge = !in_stock ? "OUT OF STOCK" : null
+function Product({
+  product_name,
+  product_number,
+  price,
+  in_stock,
+  picture_url,
+  company,
+}) {
+  // price is stored in paise → convert to rupees
+  const priceRupees = (price / 100).toFixed(2)
 
   return (
     <article className="product-card">
       <div className="product-image-wrap">
         <img
-          src={picture || "https://picsum.photos/seed/placeholder/500/500"}
-          alt={name}
+          src={picture_url || "https://picsum.photos/seed/placeholder/500/500"}
+          alt={product_name}
           className="product-image"
           onError={(e) => {
             e.currentTarget.src = "https://picsum.photos/seed/fallback/500/500"
           }}
         />
-
-        {badge && <span className="product-badge">{badge}</span>}
+        {!in_stock && <span className="product-badge out-of-stock">OUT OF STOCK</span>}
       </div>
 
       <div className="product-body">
-        <h3 className="product-name">{name}</h3>
-        {description && <p className="product-subtitle">{description}</p>}
+        {company && <span className="product-company">{company}</span>}
 
-        <div className="product-price-row">
-          <span className="product-price">₹{price}</span>
+        <h3 className="product-name">{product_name}</h3>
+
+        <div className="product-meta-row">
+          <span className="product-number">{product_number}</span>
+          <span className="product-price">₹{priceRupees}</span>
         </div>
       </div>
     </article>
