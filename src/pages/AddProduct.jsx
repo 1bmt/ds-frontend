@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getToken } from '../lib/auth'
 
+const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+const UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
+
 const INITIAL_FORM = {
   product_name: '',
   product_number: '',
@@ -16,6 +19,7 @@ const INITIAL_FORM = {
 function AddProduct() {
   const navigate = useNavigate()
   const [form, setForm] = useState(INITIAL_FORM)
+  const [uploading, setUploading] = useState(false)
   const [loading, setLoading] = useState(false)
   const [response, setResponse] = useState(null)
 
@@ -27,19 +31,51 @@ function AddProduct() {
     }))
   }
 
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+
+    setUploading(true)
+    setResponse(null)
+
+    try {
+      const fd = new FormData()
+      fd.append('file', file)
+      fd.append('upload_preset', UPLOAD_PRESET)
+
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+        { method: 'POST', body: fd }
+      )
+
+      const data = await res.json()
+
+      if (data.secure_url) {
+        setForm((f) => ({ ...f, picture_url: data.secure_url }))
+      } else {
+        throw new Error(data.error?.message || 'Upload failed')
+      }
+    } catch (err) {
+      setResponse({ ok: false, message: err.message || 'Image upload failed' })
+    } finally {
+      setUploading(false)
+      // Reset the file input so re-selecting the same file triggers onChange
+      e.target.value = ''
+    }
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
     setResponse(null)
 
     try {
-      // Build payload — convert empty strings to null, price to integer
       const payload = {
         product_name: form.product_name.trim(),
         product_number: form.product_number.trim(),
         price: parseInt(form.price, 10),
         in_stock: form.in_stock,
-        picture_url: form.picture_url.trim() || null,
+        picture_url: form.picture_url || null,
         description: form.description.trim() || null,
         category: form.category.trim() || null,
         company: form.company.trim() || null,
@@ -166,16 +202,20 @@ function AddProduct() {
             </div>
 
             <div className="form-field">
-              <label htmlFor="picture_url">Picture URL</label>
+              <label htmlFor="picture">Product Image</label>
               <input
-                id="picture_url"
-                name="picture_url"
-                type="url"
-                value={form.picture_url}
-                onChange={handleChange}
-                placeholder="https://..."
-                disabled={loading}
+                id="picture"
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                disabled={uploading || loading}
               />
+              {uploading && <span className="form-hint">Uploading…</span>}
+              {form.picture_url && (
+                <div className="image-preview">
+                  <img src={form.picture_url} alt="Preview" />
+                </div>
+              )}
             </div>
           </div>
 
@@ -208,14 +248,14 @@ function AddProduct() {
               type="button"
               className="btn"
               onClick={() => setForm(INITIAL_FORM)}
-              disabled={loading}
+              disabled={loading || uploading}
             >
               Reset
             </button>
             <button
               type="submit"
               className="btn btn-primary"
-              disabled={loading}
+              disabled={loading || uploading}
             >
               {loading && <span className="spinner" aria-hidden="true" />}
               {loading ? 'Creating…' : 'Create Product'}

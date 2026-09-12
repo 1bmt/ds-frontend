@@ -860,3 +860,22 @@ img { max-width: 100%; display: block; }
   gap: 0.5rem;
   margin-top: 0.4rem;
 }
+
+.form-hint {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+.image-preview {
+  margin-top: 0.75rem;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  max-width: 200px;
+}
+
+.image-preview img {
+  width: 100%;
+  display: block;
+}
