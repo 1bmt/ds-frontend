@@ -6,8 +6,6 @@ function Product({
   picture_url,
   company,
 }) {
-  // price is stored in paise → convert to rupees
-  const priceRupees = (price / 100).toFixed(2)
 
   return (
     <article className="product-card">
@@ -30,7 +28,7 @@ function Product({
 
         <div className="product-meta-row">
           <span className="product-number">{product_number}</span>
-          <span className="product-price">₹{priceRupees}</span>
+          <span className="product-price">₹{price}</span>
         </div>
       </div>
     </article>

@@ -32,7 +32,7 @@ function Login() {
           saveToken(token)
           setResponse({ ok: true, message: 'Login successful' })
           setPassword('')
-          window.location.href = '/admin'
+          window.location.href = '/'
         } else {
           setResponse({
             ok: false,

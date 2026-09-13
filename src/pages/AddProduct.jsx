@@ -154,7 +154,7 @@ function AddProduct() {
 
           <div className="form-row">
             <div className="form-field">
-              <label htmlFor="price">Price (in paise)</label>
+              <label htmlFor="price">Price</label>
               <input
                 id="price"
                 name="price"
@@ -163,7 +163,7 @@ function AddProduct() {
                 step="1"
                 value={form.price}
                 onChange={handleChange}
-                placeholder="e.g. 5130 for ₹51.30"
+                placeholder="e.g. 5130 for ₹5130"
                 required
                 disabled={loading}
               />
