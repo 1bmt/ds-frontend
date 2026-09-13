@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getToken } from '../lib/auth'
+import { apiFetch } from '../lib/api'
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
 const UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
@@ -43,6 +43,7 @@ function AddProduct() {
       fd.append('file', file)
       fd.append('upload_preset', UPLOAD_PRESET)
 
+      // Cloudinary uses its own auth (upload preset), not our apiFetch
       const res = await fetch(
         `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
         { method: 'POST', body: fd }
@@ -59,7 +60,6 @@ function AddProduct() {
       setResponse({ ok: false, message: err.message || 'Image upload failed' })
     } finally {
       setUploading(false)
-      // Reset the file input so re-selecting the same file triggers onChange
       e.target.value = ''
     }
   }
@@ -81,12 +81,8 @@ function AddProduct() {
         company: form.company.trim() || null,
       }
 
-      const res = await fetch('http://127.0.0.1:8000/api/products', {
+      const res = await apiFetch('/api/products', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${getToken()}`,
-        },
         body: JSON.stringify(payload),
       })
 

@@ -879,3 +879,21 @@ img { max-width: 100%; display: block; }
   width: 100%;
   display: block;
 }
+
+.header nav button.nav-logout {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  color: #cbd5e1;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--r-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.header nav button.nav-logout:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+}

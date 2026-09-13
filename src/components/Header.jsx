@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom'
-import { isLoggedIn } from '../lib/auth'
+import { isLoggedIn, clearToken } from '../lib/auth'
 
 function Header() {
   const loggedIn = isLoggedIn()
+
+  const handleLogout = () => {
+    clearToken()
+    window.location.href = '/'
+  }
 
   return (
     <header className="header">
@@ -16,7 +21,12 @@ function Header() {
           <Link to="/partners">Partners</Link>
           <Link to="/contact">Contact</Link>
           {loggedIn ? (
-            <Link to="/add_product">Add Product</Link>
+            <>
+              <Link to="/add_product">Add Product</Link>
+              <button className="nav-logout" onClick={handleLogout}>
+                Sign Out
+              </button>
+            </>
           ) : (
             <Link to="/login">Login</Link>
           )}
