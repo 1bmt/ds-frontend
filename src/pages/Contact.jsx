@@ -7,19 +7,38 @@ function Contact() {
     phone: '',
     message: '',
   })
-  const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [response, setResponse] = useState(null)   // { ok: bool, message: string }
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // TODO: POST to backend / trigger email
-    console.log('Form submitted:', form)
-    setSubmitted(true)
-    setForm({ name: '', email: '', phone: '', message: '' })
-    setTimeout(() => setSubmitted(false), 5000)
+    setLoading(true)
+    setResponse(null)
+
+    try {
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      const data = await res.json()
+
+      if (res.ok) {
+        setResponse({ ok: true, message: "Thanks! We'll be in touch soon." })
+        setForm({ name: '', email: '', phone: '', message: '' })
+      } else {
+        setResponse({ ok: false, message: data.error || 'Something went wrong.' })
+      }
+    } catch (err) {
+      setResponse({ ok: false, message: 'Network error — please try again.' })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -34,9 +53,9 @@ function Contact() {
 
       <div className="contact-wrap">
         <form className="contact-form" onSubmit={handleSubmit}>
-          {submitted && (
-            <div className="form-success">
-              Thanks! Your message has been sent. We'll be in touch soon.
+          {response && (
+            <div className={`form-response ${response.ok ? 'success' : 'error'}`}>
+              {response.message}
             </div>
           )}
 
@@ -51,6 +70,7 @@ function Contact() {
                 value={form.name}
                 onChange={handleChange}
                 required
+                disabled={loading}
               />
             </div>
 
@@ -64,6 +84,7 @@ function Contact() {
                 value={form.email}
                 onChange={handleChange}
                 required
+                disabled={loading}
               />
             </div>
           </div>
@@ -79,6 +100,7 @@ function Contact() {
               placeholder="+91 98765 43210"
               value={form.phone}
               onChange={handleChange}
+              disabled={loading}
             />
           </div>
 
@@ -92,12 +114,18 @@ function Contact() {
               value={form.message}
               onChange={handleChange}
               required
+              disabled={loading}
             />
           </div>
 
           <div className="form-actions">
-            <button type="submit" className="btn btn-primary">
-              Send Message
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={loading}
+            >
+              {loading && <span className="spinner" aria-hidden="true" />}
+              {loading ? 'Sending…' : 'Send Message'}
             </button>
           </div>
         </form>
