@@ -117,26 +117,33 @@ img { max-width: 100%; display: block; }
   gap: 0.35rem;
 }
 
+.nav-dropdown {
+  position: relative;
+}
+
 /* Links and the Sign Out button share identical styling */
 .header nav a,
-.header nav button.nav-logout {
+.header nav button.nav-logout,
+.header nav .nav-link-dropdown,
+.header nav .partner-option {
   color: #cbd5e1;
   padding: 0.5rem 0.9rem;
   border-radius: var(--r-sm);
   font-size: 0.9rem;
   font-weight: 500;
-  transition: color 0.2s var(--ease), background 0.2s var(--ease);
+  transition: color 0.2s var(--ease), background 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 
-.header nav button.nav-logout {
-  background: transparent;
-  border: none;
-  font-family: inherit;
-  cursor: pointer;
+.header nav .nav-link-dropdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .header nav a:hover,
-.header nav button.nav-logout:hover {
+.header nav button.nav-logout:hover,
+.header nav .nav-link-dropdown:hover,
+.header nav .partner-option:hover {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.06);
 }
@@ -144,6 +151,63 @@ img { max-width: 100%; display: block; }
 .header nav a.active {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.08);
+}
+
+.partners-dropdown-shell {
+  position: relative;
+}
+
+.partners-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  min-width: 260px;
+  max-height: 420px;
+  overflow-y: auto;
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 0.85rem;
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.32);
+  backdrop-filter: blur(10px);
+  padding: 0.45rem;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+  z-index: 200;
+}
+
+.partners-dropdown-shell:hover .partners-dropdown,
+.partners-dropdown-shell:focus-within .partners-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.partner-option {
+  display: block;
+  width: 100%;
+  color: #e2e8f0;
+  padding: 0.7rem 0.8rem;
+  border-radius: 0.65rem;
+  border: 1px solid transparent;
+  background: transparent;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.partner-option + .partner-option {
+  margin-top: 0.2rem;
+}
+
+.partner-option:hover,
+.partner-option:focus-visible {
+  background: rgba(96, 165, 250, 0.12);
+  border-color: rgba(96, 165, 250, 0.35);
+  color: #ffffff;
+  outline: none;
 }
 
 /* ---------- Footer ---------- */

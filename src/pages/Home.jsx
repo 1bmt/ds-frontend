@@ -2,8 +2,6 @@ import Product from '../components/Product'
 import { useProducts } from '../hooks/useProducts'
 
 function Home() {
-  const { products, loading, error } = useProducts()
-
   return (
     <div className="container">
       <div className="page-intro">
@@ -15,14 +13,19 @@ function Home() {
         </p>
       </div>
 
-      <div className="products">
-        {loading && <p className="status">Loading products…</p>}
-        {error && <p className="status error">Couldn't load products: {error}</p>}
-        {!loading && !error && products.length === 0 && (
-          <p className="status">No products available.</p>
-        )}
-        {!loading && !error &&
-          products.map(p => <Product key={p.id} {...p} />)}
+      <div className="home-highlights">
+        <div className="info-card">
+          <h2>Trusted Supply</h2>
+          <p>Focused on dependable sourcing and consistent service for research and lab operations.</p>
+        </div>
+        <div className="info-card">
+          <h2>Scientific Partners</h2>
+          <p>We support institutions, laboratories, and industries with solutions built around quality.</p>
+        </div>
+        <div className="info-card">
+          <h2>Customer Support</h2>
+          <p>From product selection to follow-up, we aim to be a reliable partner in your workflow.</p>
+        </div>
       </div>
     </div>
   )

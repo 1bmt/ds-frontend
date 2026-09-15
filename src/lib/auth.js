@@ -1,17 +1,17 @@
 const TOKEN_KEY = 'ds_token'
 
-export function saveToken(token) {
-  localStorage.setItem(TOKEN_KEY, token)
+export function saveToken() {
+  return null
 }
 
 export function getToken() {
-  return localStorage.getItem(TOKEN_KEY)
+  return null
 }
 
 export function clearToken() {
-  localStorage.removeItem(TOKEN_KEY)
+  return null
 }
 
 export function isLoggedIn() {
-  return Boolean(getToken())
+  return false
 }
