@@ -18,6 +18,7 @@ function Header() {
         <nav>
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
+          <Link to="/products">Products</Link>
           <Link to="/partners">Partners</Link>
           <Link to="/contact">Contact</Link>
           {loggedIn ? (

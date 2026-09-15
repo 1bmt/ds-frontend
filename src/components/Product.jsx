@@ -5,6 +5,8 @@ function Product({
   in_stock,
   picture_url,
   company,
+  category,
+  description,
 }) {
 
   return (
@@ -18,16 +20,23 @@ function Product({
             e.currentTarget.src = "https://picsum.photos/seed/fallback/500/500"
           }}
         />
-        {!in_stock && <span className="product-badge out-of-stock">OUT OF STOCK</span>}
+        <span className={`product-badge ${in_stock ? 'in-stock' : 'out-of-stock'}`}>
+          {in_stock ? 'In stock' : 'Out of stock'}
+        </span>
       </div>
 
       <div className="product-body">
-        {company && <span className="product-company">{company}</span>}
+        <div className="product-labels">
+          {company && <span className="product-company">{company}</span>}
+          {category && <span className="product-category">{category}</span>}
+        </div>
 
         <h3 className="product-name">{product_name}</h3>
 
+        {description && <p className="product-description">{description}</p>}
+
         <div className="product-meta-row">
-          <span className="product-number">{product_number}</span>
+          <span className="product-number">#{product_number}</span>
           <span className="product-price">₹{price}</span>
         </div>
       </div>

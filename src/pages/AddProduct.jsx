@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { apiFetch } from '../lib/api'
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
@@ -17,7 +16,6 @@ const INITIAL_FORM = {
 }
 
 function AddProduct() {
-  const navigate = useNavigate()
   const [form, setForm] = useState(INITIAL_FORM)
   const [uploading, setUploading] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -81,7 +79,7 @@ function AddProduct() {
         company: form.company.trim() || null,
       }
 
-      const res = await apiFetch('/api/products', {
+      const res = await apiFetch('/products', {
         method: 'POST',
         body: JSON.stringify(payload),
       })
