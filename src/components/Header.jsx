@@ -12,7 +12,6 @@ function Header() {
         </Link>
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
           <div className="nav-dropdown partners-dropdown-shell">
             <Link to="/partners" className="nav-link-dropdown">
               Partners <span aria-hidden="true">▾</span>
