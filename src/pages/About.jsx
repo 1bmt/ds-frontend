@@ -4,8 +4,8 @@ function About() {
       <div className="page-intro">
         <h1>About Deep Scientific</h1>
         <p>
-          Delivering trusted scientific supply and dependable support for research,
-          laboratory, and industry applications across India.
+          A reliable scientific supply partner dedicated to laboratory excellence,
+          quality products, and dependable service.
         </p>
       </div>
 
@@ -13,30 +13,36 @@ function About() {
         <div className="about-grid">
           <div className="about-copy">
             <p>
-              Deep Scientific was established in January 2014 as a leading distributor of
-              scientific equipment and laboratory chemicals in Delhi, India. We specialize in
-              providing high-quality products to research institutions, laboratories,
-              pharmaceutical companies, and educational institutions.
+              Established in the year 2014, Deep Scientific is engaged in the wholesale
+              distribution, trading, supply, and service of laboratory instruments,
+              thermo pipettes, lab chemicals, diagnostic products, primer synthesis services,
+              and other scientific essentials.
             </p>
             <p>
-              Over the last decade, we have built strong relationships with globally recognized
-              manufacturers and technology partners, allowing us to support a broad range of
-              scientific requirements with confident sourcing and consistent service.
+              We are committed to offering products that meet the demands of modern
+              laboratories and research facilities. Our team works with a quality-first
+              approach and ensures each product is sourced and supplied to match the varied
+              requirements of our clients across healthcare, education, research, and industry.
+            </p>
+            <p>
+              Our focus on ethical business practices, transparent dealings, competitive
+              pricing, and timely delivery has helped us build lasting relationships with
+              customers and partners alike.
             </p>
           </div>
 
           <div className="about-feature-list">
             <div className="feature-item">
-              <h3>Reliable sourcing</h3>
-              <p>We work with trusted suppliers to bring quality solutions to clients across the scientific ecosystem.</p>
+              <h3>Why choose us</h3>
+              <p>Client-centric approach, transparent business dealings, and dependable after-sales support.</p>
             </div>
             <div className="feature-item">
-              <h3>Practical guidance</h3>
-              <p>Our team helps match the right products and solutions to real-world research and operational needs.</p>
+              <h3>Quality measures</h3>
+              <p>Products are checked against quality parameters to ensure reliability, safety, and performance.</p>
             </div>
             <div className="feature-item">
-              <h3>Long-term partnership</h3>
-              <p>We focus on building trust through consistent service, responsive communication, and dependable support.</p>
+              <h3>Strong supply network</h3>
+              <p>We support urgent and bulk requirements through our efficient distribution network and service-oriented workflow.</p>
             </div>
           </div>
         </div>

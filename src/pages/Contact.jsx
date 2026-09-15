@@ -46,8 +46,8 @@ function Contact() {
       <div className="page-intro">
         <h1>Get in Touch</h1>
         <p>
-          Have a question about our products or need a quote? Send us a message and
-          our team will get back to you within one business day.
+          Need laboratory instruments, chemicals, or scientific solutions for your business?
+          Reach out and our team will be happy to assist you.
         </p>
       </div>
 
@@ -111,7 +111,7 @@ function Contact() {
                 id="message"
                 name="message"
                 rows="6"
-                placeholder="Tell us what you're looking for — products, quantities, delivery location, etc."
+                placeholder="Tell us what you're looking for — lab instruments, chemicals, quantities, delivery location, etc."
                 value={form.message}
                 onChange={handleChange}
                 required
@@ -128,19 +128,19 @@ function Contact() {
 
           <aside className="contact-panel">
             <h3>Contact details</h3>
-            <p>We help teams find the right scientific supply solutions with speed and clarity.</p>
+            <p>We support quality-focused scientific supply requirements across research and industry.</p>
             <ul className="contact-list">
               <li>
                 <strong>Location</strong>
-                <span>Delhi, India</span>
+                <span>New Delhi, Delhi</span>
               </li>
               <li>
-                <strong>Email</strong>
-                <a href="mailto:hello@deepscientific.in">hello@deepscientific.in</a>
+                <strong>Proprietor</strong>
+                <span>Somvir Hooda</span>
               </li>
               <li>
-                <strong>Phone</strong>
-                <a href="tel:+919876543210">+91 98765 43210</a>
+                <strong>Business Type</strong>
+                <span>Wholesaler / Distributor / Supplier</span>
               </li>
             </ul>
           </aside>

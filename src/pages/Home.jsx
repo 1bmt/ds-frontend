@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 
 const trustPoints = [
-  'Laboratory Equipment',
-  'Research Chemicals',
-  'Scientific Instruments',
-  'Trusted Supply Network',
+  'Lab Instruments',
+  'Lab Chemicals',
+  'Thermo Pipettes',
+  'Diagnostic Products',
 ]
 
 function Home() {
@@ -13,11 +13,11 @@ function Home() {
       <section className="hero-section">
         <div className="hero-copy">
           <span className="eyebrow">Since 2014</span>
-          <h1>Trusted scientific solutions for modern laboratories.</h1>
+          <h1>Leading Scientific Equipment &amp; Chemical Distributor</h1>
           <p>
-            Deep Scientific helps research institutions, labs, and industries source
-            dependable laboratory equipment, chemicals, and instruments from reputable
-            global manufacturers.
+            Deep Scientific delivers laboratory instruments, chemicals, diagnostic products,
+            and scientific essentials to institutions, research teams, and industries that
+            need trusted quality and dependable service.
           </p>
 
           <div className="hero-badges" aria-label="Core capabilities">
@@ -27,6 +27,9 @@ function Home() {
           </div>
 
           <div className="hero-actions">
+            <Link to="/about" className="btn btn-secondary">
+              About us
+            </Link>
             <Link to="/partners" className="btn btn-primary">
               Our Partners
             </Link>
@@ -60,62 +63,25 @@ function Home() {
       <section className="trust-strip" aria-label="Business highlights">
         <div className="trust-item">
           <strong>10+</strong>
-          <span>Years of service</span>
+          <span>Years of experience</span>
         </div>
         <div className="trust-item">
           <strong>9+</strong>
           <span>Domestic partners</span>
         </div>
         <div className="trust-item">
-          <strong>100%</strong>
-          <span>Support-focused</span>
-        </div>
-      </section>
-
-      <section className="home-about" id="about">
-        <div className="section-heading">
-          <span className="eyebrow">About us</span>
-          <h2>Built on expertise, trust, and long-term scientific partnerships.</h2>
-        </div>
-
-        <div className="about-grid">
-          <div className="about-copy">
-            <p>
-              Deep Scientific was established in January 2014 as a leading distributor of
-              scientific equipment and laboratory chemicals in Delhi, India. We support
-              research institutions, laboratories, pharmaceutical companies, and educational
-              institutions with reliable sourcing and practical solutions.
-            </p>
-            <p>
-              Over the years, we have built strong relationships with globally recognized
-              manufacturers and suppliers, helping us deliver quality-driven products and
-              dependable support to a wide range of scientific applications.
-            </p>
-          </div>
-
-          <div className="about-feature-list">
-            <div className="feature-item">
-              <h3>Quality first</h3>
-              <p>We supply products that meet the expectations of precise research and operational environments.</p>
-            </div>
-            <div className="feature-item">
-              <h3>Global network</h3>
-              <p>Our partnerships help bring advanced scientific technologies and trusted solutions to the Indian market.</p>
-            </div>
-            <div className="feature-item">
-              <h3>Customer focus</h3>
-              <p>From product selection to long-term support, we aim to make every interaction smooth and reliable.</p>
-            </div>
-          </div>
+          <strong>Trusted</strong>
+          <span>For quality and timely supply</span>
         </div>
       </section>
 
       <section className="cta-banner" aria-label="Contact call to action">
         <div>
           <span className="eyebrow eyebrow-light">Let’s talk</span>
-          <h3>Need a dependable scientific supply partner?</h3>
+          <h3>Looking for trusted lab products and dependable supply support?</h3>
         </div>
         <div className="cta-actions">
+          <Link to="/about" className="btn btn-secondary btn-cta">About us</Link>
           <Link to="/partners" className="btn btn-secondary btn-cta">Explore partners</Link>
           <Link to="/contact" className="btn btn-primary btn-cta">Contact us</Link>
         </div>
